@@ -14,9 +14,9 @@
 extern void cd(const char *name);
 extern void clr();
 extern void dir(const char *name);
-extern void environ();
+extern void environ(char* env[]);
 extern void echo(const char *text);
 extern void help();
-extern void pause();
+extern void pauses();
 
 #endif /* UTILITY_H_ */

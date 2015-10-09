@@ -44,8 +44,11 @@ void dir(const char *name){
 }
 
 //environ - List all the environment strings
-extern void environ(){
-
+extern void environ(char* env[]){
+	int i;
+	for( i = 0; env[i] != NULL; i++) {
+		printf("%s\n",env[i]);
+	}	
 }
 
 //echo <comment> - Display <comment> on the display followed by a
@@ -60,7 +63,7 @@ extern void help(){
 }
 
 //pause - Pause operation of the shell until 'Enter' is pressed
-extern void pause(){
+extern void pauses(){
 
 }
 
