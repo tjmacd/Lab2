@@ -51,7 +51,7 @@ extern void environ(){
 //echo <comment> - Display <comment> on the display followed by a
 //new line (multiple spaces/tabs may be reduced to a single space)
 extern void echo(const char *text){
-
+    puts(text);
 }
 
 //help - Display the user manual using the more filter
