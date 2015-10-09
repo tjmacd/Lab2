@@ -15,3 +15,55 @@
 
 // Define your utility functions here, these will most likely be functions that you call
 // in your myshell.c source file
+
+//cd <directory> - Change the current default directory to <directory>
+extern void cd(const char *name){
+
+}
+
+//clr - Clear the screen
+void clr(){
+	system("clear");
+}
+
+//dir <directory> - List the contents of directory <directory>
+void dir(const char *name){
+    DIR *directory;
+    struct dirent *ep;
+
+    directory = opendir(name);
+    if(directory != NULL){
+        while(ep = readdir(directory)){
+            puts(ep->d_name);
+        }
+        (void) closedir(directory);
+    }
+    else{
+        perror("Couldn't open the directory");
+    }
+}
+
+//environ - List all the environment strings
+extern void environ(char* env[]){
+	int i;
+	for( i = 0; env[i] != NULL; i++) {
+		printf("%s\n",env[i]);
+	}	
+}
+
+//echo <comment> - Display <comment> on the display followed by a
+//new line (multiple spaces/tabs may be reduced to a single space)
+extern void echo(const char *text){
+    puts(text);
+}
+
+//help - Display the user manual using the more filter
+extern void help(){
+
+}
+
+//pause - Pause operation of the shell until 'Enter' is pressed
+extern void pauses(){
+
+}
+

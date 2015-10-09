@@ -65,7 +65,10 @@ int main(int argc, char *argv[])
             echo(arg);
         } else if (strcmp(command, ""))
 
-        // other commands here...
+        if (strcmp(command, "clr") == 0)
+        {
+            clr();
+        }
         
         // quit command -- exit the shell
         else if (strcmp(command, "quit") == 0)
