@@ -34,13 +34,36 @@ int main(int argc, char *argv[])
     while (fgets(buffer, BUFFER_LEN, stdin) != NULL)
     {
         // Perform string tokenization to get the command and argument
+        char delim[BUFFER_LEN];
+        char* token;
+
+        strcpy(delim, " ");
+        token = strtok(buffer, delim);
+        strcpy(command, token);
+
+        while(token != NULL) {
+            strcpy(delim, "\n");
+            token = strtok(NULL, delim);
+            if (token == NULL)
+                break;
+            strcpy(arg, token);
+        }
+
+        free(token); // free the token pointer
 
         // Check the command and execute the operations for each command
         // cd command -- change the current directory
-        if (strcmp(command, "cd") == 0)
-        {
-            // your code here
-        }
+        if (strcmp(command, "cd") == 0) {
+            cd(arg);
+        } else if (strcmp(command, "clr") == 0) {
+            clr();
+        } else if (strcmp(command, "dir") == 0) {
+            dir(arg);
+        } else if (strcmp(command, "environ") == 0) {
+            environ();
+        } else if (strcmp(command, "echo") == 0) {
+            echo(arg);
+        } else if (strcmp(command, ""))
 
         // other commands here...
         
