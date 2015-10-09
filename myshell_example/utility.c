@@ -16,6 +16,12 @@
 // Define your utility functions here, these will most likely be functions that you call
 // in your myshell.c source file
 
+//cd <directory> - Change the current default directory to <directory>
+extern void cd(const char *name){
+
+}
+
+//clr - Clear the screen
 void clr(){
 	system("clear");
 }
@@ -36,3 +42,25 @@ void dir(const char *name){
         perror("Couldn't open the directory");
     }
 }
+
+//environ - List all the environment strings
+extern void environ(){
+
+}
+
+//echo <comment> - Display <comment> on the display followed by a
+//new line (multiple spaces/tabs may be reduced to a single space)
+extern void echo(const char *text){
+
+}
+
+//help - Display the user manual using the more filter
+extern void help(){
+
+}
+
+//pause - Pause operation of the shell until 'Enter' is pressed
+extern void pause(){
+
+}
+
