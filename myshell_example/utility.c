@@ -15,3 +15,20 @@
 
 // Define your utility functions here, these will most likely be functions that you call
 // in your myshell.c source file
+
+//dir <directory> - List the contents of directory <directory>
+void dir(const char *name){
+    DIR *directory;
+    struct dirent *ep;
+
+    directory = opendir(name);
+    if(directory != NULL){
+        while(ep = readdir(directory)){
+            puts(ep->d_name);
+        }
+        (void) closedir(directory);
+    }
+    else{
+        perror("Couldn't open the directory");
+    }
+}
