@@ -42,7 +42,10 @@ int main(int argc, char *argv[])
             // your code here
         }
 
-        // other commands here...
+        if (strcmp(command, "clr") == 0)
+        {
+            clr();
+        }
         
         // quit command -- exit the shell
         else if (strcmp(command, "quit") == 0)
