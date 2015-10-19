@@ -32,6 +32,7 @@ int main(int argc, char *argv[]) {
 
     // Parse the commands provided using argc and argv
 
+	printf("> ");
     // Perform an infinite loop getting command input from users
     while (fgets(buffer, BUFFER_LEN, stdin) != NULL) {
         //inputLen = strlen(buffer); // get length of line typed in shell
@@ -83,6 +84,7 @@ int main(int argc, char *argv[]) {
         else {
             fputs("Unsupported command, use help to display the manual\n", stderr);
         }
+		printf("> ");
     }
     free(token); // free the token pointer
     return EXIT_SUCCESS;

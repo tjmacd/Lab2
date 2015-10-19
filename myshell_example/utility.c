@@ -27,7 +27,11 @@ void clr(){
 }
 
 //dir <directory> - List the contents of directory <directory>
-void dir(const char *name){
+void dir(char *name){
+	if(strcmp(name, "") == 0){
+		name = ".";
+	}
+
     DIR *directory;
     struct dirent *ep;
 
