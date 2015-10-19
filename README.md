@@ -19,3 +19,4 @@ Put your name next to something on the todo list so we know you're working on it
 - batch file input (a la *myshell batchfile*)
 - more info in *readme* - operators manual
 - deliverables as outlined in **Lab2.pdf**
+- parts **4-6** (for bonus or due Oct 30 (?))
