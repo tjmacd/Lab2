@@ -17,8 +17,11 @@
 // in your myshell.c source file
 
 //cd <directory> - Change the current default directory to <directory>
-extern void cd(const char *name){
+void cd(const char *name){
 
+    chdir(name);    
+    setenv("PWD",name,1);
+    
 }
 
 //clr - Clear the screen
