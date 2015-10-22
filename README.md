@@ -8,9 +8,9 @@ Put your name next to something on the todo list so we know you're working on it
 - quit
 - tokenizing
 - pause
-- cd
 
 ## TODO
+- cd
 - environ - should list environment variables specific to our shell (i think)
 - environ needs to be called from main
 - help - print 'readme' using **more** filter
