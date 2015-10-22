@@ -11,7 +11,7 @@
 // Include your relevant functions declarations here they must start with the 
 // extern keyword such as in the following example:
 // extern void display_help(void);
-extern char *get_cwd();
-extern char *get_executable();
+extern char *get_cwd(char* PWD);
+extern char *get_executable(char* SHELL);
 
 #endif /* MYSHELL_H_ */
