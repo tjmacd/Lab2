@@ -8,6 +8,11 @@
 #ifndef UTILITY_H_
 #define UTILITY_H_
 
+typedef struct{
+	char *name;
+	char *value;
+} env_var;
+
 // Include your relevant functions declarations here they must start with the 
 // extern keyword such as in the following example:
 // extern void display_help(void);

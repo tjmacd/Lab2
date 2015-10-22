@@ -28,9 +28,13 @@ int main(int argc, char *argv[]) {
     char arg[BUFFER_LEN] = { 0 };
     char delim[BUFFER_LEN];
     char* token;
+	FILE *batchfile = NULL;
     //int inputLen;
 
     // Parse the commands provided using argc and argv
+	if(argc > 1){
+		batchfile = fopen(argv[1], "r");
+	}
 
 	printf("> ");
     // Perform an infinite loop getting command input from users
