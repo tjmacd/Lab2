@@ -68,6 +68,10 @@ extern void help(){
 
 //pause - Pause operation of the shell until 'Enter' is pressed
 extern void pauses(){
-
+	char c;
+	puts("Press Enter to continue...");
+	do{
+		c = fgetc(stdin);
+	} while (c != 10);
 }
 

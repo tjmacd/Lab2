@@ -7,13 +7,13 @@ Put your name next to something on the todo list so we know you're working on it
 - echo
 - quit
 - tokenizing
+- pause
 
 ## TODO
 - cd
 - environ - should list environment variables specific to our shell (i think)
 - environ needs to be called from main
 - help - print 'readme' using **more** filter
-- pause
 - environment variable *shell* = the file path of the shell executable
 - executing programs in the shell (I think that's what **2** is asking for)
 - batch file input (a la *myshell batchfile*)
