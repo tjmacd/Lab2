@@ -13,8 +13,13 @@
 // extern void display_help(void);
 extern void cd(const char *name);
 extern void clr();
+<<<<<<< HEAD
 extern void dir(const char *name);
 extern void environ(const char* env[]);
+=======
+extern void dir(char *name);
+extern void environ(char* env[]);
+>>>>>>> aa27bc0e754f1dc09c9d5fb23943818f82a00e03
 extern void echo(const char *text);
 extern void help();
 extern void pauses();
