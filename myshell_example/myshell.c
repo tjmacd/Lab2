@@ -18,8 +18,34 @@
 #define BUFFER_LEN 256
 
 // Put global environment variables here
+typedef struct{
+	char name[8];
+	char value[256];
+} env_var;
+
+env_var env_vars[2];
 
 // Define functions declared in myshell.h here
+// Returns the current working directory path
+char *get_cwd(){
+	char *PWD;
+
+	char buff[BUFFER_LEN];
+	PWD = getcwd(buff, BUFFER_LEN);
+	return PWD;
+}
+
+// Returns the path of the current executable
+char *get_executable(){
+	char *SHELL;
+	SHELL = (char *) calloc(BUFFER_LEN, sizeof(char));
+	int n = readlink("/proc/self/exe", SHELL, BUFFER_LEN);
+	if(n > 0){
+		return SHELL;
+	} else {
+		return NULL;
+	}
+}
 
 int main(int argc, char *argv[]) {
     // Input buffer and and commands
@@ -29,6 +55,12 @@ int main(int argc, char *argv[]) {
     char delim[BUFFER_LEN];
     char* token;
     //int inputLen;
+
+	//Initiallize environment variables
+	strcpy(env_vars[0].name, "PWD");
+	strcpy(env_vars[0].value, get_cwd());
+	strcpy(env_vars[1].name, "SHELL");
+	strcpy(env_vars[1].value, get_executable());
 
     // Parse the commands provided using argc and argv
 

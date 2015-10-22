@@ -40,7 +40,7 @@ void dir(char *name){
 
     directory = opendir(name);
     if(directory != NULL){
-        while(ep = readdir(directory)){
+        while((ep = readdir(directory))){
             puts(ep->d_name);
         }
         (void) closedir(directory);
@@ -51,7 +51,7 @@ void dir(char *name){
 }
 
 //environ - List all the environment strings
-extern void environ(const char* env[]){
+void environ(const char* env[]){
 	int i;
 	for( i = 0; env[i] != NULL; i++) {
 		printf("%s\n",env[i]);
@@ -60,17 +60,17 @@ extern void environ(const char* env[]){
 
 //echo <comment> - Display <comment> on the display followed by a
 //new line (multiple spaces/tabs may be reduced to a single space)
-extern void echo(const char *text){
+void echo(const char *text){
     puts(text);
 }
 
 //help - Display the user manual using the more filter
-extern void help(){
+void help(){
 
 }
 
 //pause - Pause operation of the shell until 'Enter' is pressed
-extern void pauses(){
+void pauses(){
 	char c;
 	puts("Press Enter to continue...");
 	do{
