@@ -18,6 +18,8 @@ typedef struct{
 // extern void display_help(void);
 extern void cd(const char *name);
 extern void clr();
+extern void dir(const char *name);
+extern void environ(const char* env[]);
 extern void dir(char *name);
 extern void environ(char* env[]);
 extern void echo(const char *text);
