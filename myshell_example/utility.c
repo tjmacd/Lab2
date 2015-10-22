@@ -44,7 +44,7 @@ void dir(const char *name){
 }
 
 //environ - List all the environment strings
-extern void environ(char* env[]){
+extern void environ(const char* env[]){
 	int i;
 	for( i = 0; env[i] != NULL; i++) {
 		printf("%s\n",env[i]);
