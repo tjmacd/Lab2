@@ -4,7 +4,7 @@ LFLAGS =
 LIBS = -lm
 SOURCES = myshell.c utility.c
 OBJECTS = $(subst .c,.o,$(SOURCES))
-EXE = myshell
+EXE = myshell.exe
 .PHONY: clean help
 
 %.exe : $(OBJECTS)
