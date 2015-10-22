@@ -27,10 +27,8 @@ env_var env_vars[2];
 
 // Define functions declared in myshell.h here
 // Returns the current working directory path
-char *get_cwd(char* PWD){
-	char buff[BUFFER_LEN];
-	PWD = getcwd(NULL, BUFFER_LEN);
-	return PWD;
+char *get_cwd(){
+    return getcwd(NULL, BUFFER_LEN);
 }
 
 // Returns the path of the current executable
@@ -51,20 +49,18 @@ int main(int argc, char *argv[]) {
     char arg[BUFFER_LEN] = { 0 };
     char delim[BUFFER_LEN];
     char* token;
-    char* PWD;
     char* SHELL;
 
 	//Initiallize environment variables
-    PWD = "";
     SHELL = "";
 	strcpy(env_vars[0].name, "PWD");
-	strcpy(env_vars[0].value, get_cwd(PWD));
+	strcpy(env_vars[0].value, get_cwd());
 	strcpy(env_vars[1].name, "SHELL");
 	strcpy(env_vars[1].value, get_executable(SHELL));
 
     // Parse the commands provided using argc and argv
 
-	printf("%s> ", get_cwd(PWD));
+	printf("%s> ", get_cwd());
     // Perform an infinite loop getting command input from users
     while (fgets(buffer, BUFFER_LEN, stdin) != NULL) {
         //inputLen = strlen(buffer); // get length of line typed in shell
@@ -116,8 +112,8 @@ int main(int argc, char *argv[]) {
         else {
             fputs("Unsupported command, use help to display the manual\n", stderr);
         }
-		printf("%s> ", get_cwd(PWD));
+		printf("%s> ", get_cwd());
     }
-    free(token), free(PWD), free(SHELL); // free the token pointer
+    free(token), free(SHELL); // free the token pointer
     return EXIT_SUCCESS;
 }
