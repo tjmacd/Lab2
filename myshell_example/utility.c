@@ -66,7 +66,13 @@ void echo(const char *text){
 }
 
 //help - Display the user manual using the more filter
-void help(){
+void help(char *filter, char *shellPath){
+
+    char str[256];
+    strcpy(str, "more ");
+    strcat(str, filter);
+    strcat(str, " README.md");
+    system(str);
 
 }
 
