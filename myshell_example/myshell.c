@@ -16,6 +16,7 @@
 
 // Put macros or constants here using #define
 #define BUFFER_LEN 256
+#define NUM_ENV 2
 
 // Put global environment variables here
 typedef struct{
@@ -42,34 +43,56 @@ char *get_executable(char* SHELL){
 	}
 }
 
-int main(int argc, char *argv[]) {
+void set_var(char name[], char value[]){
+	for(int i = 0; i < NUM_ENV; i++){
+		if(strcmp(&name, &env_vars[i].name) == 0){
+			 strcpy(env_vars[i].value, value);
+		}	
+	}	
+}
+	
+
+int main(int argc, char *argv[], char *env[]) {
     // Input buffer and and commands
     char buffer[BUFFER_LEN] = { 0 };
     char command[BUFFER_LEN] = { 0 };
     char arg[BUFFER_LEN] = { 0 };
     char delim[BUFFER_LEN];
-    char* token;
-    char* SHELL;
+    char* token = NULL;
+    char* SHELL = NULL;
 
-	//Initiallize environment variables
-    SHELL = "";
+	setenv("SHELL", get_executable(SHELL), 1);
+	free(SHELL);
+
 	strcpy(env_vars[0].name, "PWD");
 	strcpy(env_vars[0].value, get_cwd());
 	strcpy(env_vars[1].name, "SHELL");
 	strcpy(env_vars[1].value, get_executable(SHELL));
 
     // Parse the commands provided using argc and argv
+	FILE *in_stream;
+	if(argc > 1){
+		in_stream = fopen(argv[1], "r");
+		if(in_stream == NULL){
+			printf("Could not open file %s", argv[1]);
+			return EXIT_FAILURE;
+		}
+		
+	} else {
+		in_stream = stdin;
+		printf("%s> ", get_cwd());
+	}
 
-	printf("%s> ", get_cwd());
+	
     // Perform an infinite loop getting command input from users
-    while (fgets(buffer, BUFFER_LEN, stdin) != NULL) {
+    while (fgets(buffer, BUFFER_LEN, in_stream) != NULL) {
         //inputLen = strlen(buffer); // get length of line typed in shell
         strcpy(arg, ""); // reset arg
         strcpy(command, ""); // reset command
-
         // Perform string tokenization to get the command and argument
         strcpy(delim, " ");
         token = strtok(buffer, delim); // get first word
+
         if (token[strlen(token)-1] == '\n')
             token[strlen(token)-1] = '\0'; // remove newline character if at end of string
         strcpy(command, token); // copy token to command
@@ -78,6 +101,7 @@ int main(int argc, char *argv[]) {
         while(token != NULL) {
             strcpy(delim, "\n");
             token = strtok(NULL, delim);
+//puts(token);
             if (token == NULL)
                 break;
             strcpy(arg, token); // store second word in arg 
@@ -94,14 +118,16 @@ int main(int argc, char *argv[]) {
         } else if (strcmp(command, "dir") == 0) {
             dir(arg);
         } else if (strcmp(command, "environ") == 0) {
-            //environ();
+            environ(env);
         } else if (strcmp(command, "echo") == 0) {
             echo(arg);
         } else if (strcmp(command, "help") == 0) {
             help();
         } else if (strcmp(command, "pause") == 0) {
             pauses();
-        }
+        } else if (strcmp(command, "") == 0) {
+            
+        } 
         
         // quit command -- exit the shell
         else if (strcmp(command, "quit") == 0) {
@@ -112,8 +138,10 @@ int main(int argc, char *argv[]) {
         else {
             fputs("Unsupported command, use help to display the manual\n", stderr);
         }
-		printf("%s> ", get_cwd());
+		if(argc == 1)
+			printf("%s> ", get_cwd());
+
     }
-    free(token), free(SHELL); // free the token pointer
+    free(token); // free the token pointer
     return EXIT_SUCCESS;
 }
