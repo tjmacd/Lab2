@@ -98,7 +98,9 @@ int main(int argc, char *argv[]) {
         } else if (strcmp(command, "echo") == 0) {
             echo(arg);
         } else if (strcmp(command, "help") == 0) {
-            help();
+            if (strcmp(arg, " ") == 0 || strcmp(arg, "") == 0)
+                printf("Error: help: argument must be of format: help [-dlfpcsu] \n");
+            help(arg, get_executable(SHELL));
         } else if (strcmp(command, "pause") == 0) {
             pauses();
         }
