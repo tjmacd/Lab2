@@ -1,7 +1,7 @@
 /*
  * MyShell Project for SOFE 3950U / CSCI 3020U: Operating Systems
  *
- * Copyright (C) 2015, <GROUP MEMBERS>
+ * Copyright (C) 2015, Muhammad Ahmad, Timothy MacDougall, Devin Westbye
  * All rights reserved.
  * 
  */
@@ -122,7 +122,9 @@ int main(int argc, char *argv[], char *env[]) {
         } else if (strcmp(command, "echo") == 0) {
             echo(arg);
         } else if (strcmp(command, "help") == 0) {
-            help();
+            if (strcmp(arg, " ") == 0 || strcmp(arg, "") == 0)
+                printf("Error: help: argument must be of format: help [-dlfpcsu] \n");
+            help(arg, get_executable(SHELL));
         } else if (strcmp(command, "pause") == 0) {
             pauses();
         } else if (strcmp(command, "") == 0) {
@@ -136,7 +138,47 @@ int main(int argc, char *argv[], char *env[]) {
 
         // Unsupported command
         else {
-            fputs("Unsupported command, use help to display the manual\n", stderr);
+            char program[BUFFER_LEN];
+            char location[BUFFER_LEN];
+            int len = sizeof(command) / sizeof(command[0]);
+
+            for (int i = len; i >= 0; i--) {
+                if (command[i] == '/') {
+                    for (int j = i+1; j < len; j++) {
+                        program[j-i-1] = command[j]; // get program name
+                    }
+                    for (int j = 0; j <= i; j++) {
+                        location[j] = command[j]; // get location name
+                    }
+                    break;
+                }
+            }
+
+            DIR *directory;
+            struct dirent *ep = NULL;
+            directory = opendir(location);
+            if (directory != NULL) {
+                while ((ep = readdir(directory))) {
+                    if (strcmp(ep->d_name, program) == 0) {
+                        int pid;
+                        pid = fork();
+                        if (pid < 0) {
+                            printf("Error\n");
+                            exit(1);
+                        } else if (pid == 0) {
+                            if (execvpe(program, arg, argv) == -1) { // run the program in the child process
+                                printf("Error: could not run program\n");
+                                exit(1);
+                            }
+                        }
+                        wait(); // wait for the process to terminate
+                    }
+                }
+            } else {
+                printf("Program or program location does not exist\n");
+            }
+            //fputs("Unsupported command, use help to display the manual\n", stderr);
+            free(ep);
         }
 		if(argc == 1)
 			printf("%s> ", get_cwd());

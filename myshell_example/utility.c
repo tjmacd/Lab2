@@ -1,7 +1,7 @@
 /*
  * MyShell Project for SOFE 3950U / CSCI 3020U: Operating Systems
  *
- * Copyright (C) 2015, <GROUP MEMBERS>
+ * Copyright (C) 2015, Muhammad Ahmad, Timothy MacDougall, Devin Westbye
  * All rights reserved.
  * 
  */
@@ -37,7 +37,7 @@ void dir(char *name){
 	}
 
     DIR *directory;
-    struct dirent *ep;
+    struct dirent *ep = NULL;
 
     directory = opendir(name);
     if(directory != NULL){
@@ -49,6 +49,7 @@ void dir(char *name){
     else{
         perror("Couldn't open the directory");
     }
+    free(ep);
 }
 
 //environ - List all the environment strings
@@ -66,7 +67,13 @@ void echo(const char *text){
 }
 
 //help - Display the user manual using the more filter
-void help(){
+void help(char *filter, char *shellPath){
+
+    char str[256];
+    strcpy(str, "more ");
+    strcat(str, filter);
+    strcat(str, " README.md");
+    system(str);
 
 }
 
