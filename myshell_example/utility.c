@@ -37,7 +37,7 @@ void dir(char *name){
 	}
 
     DIR *directory;
-    struct dirent *ep;
+    struct dirent *ep = NULL;
 
     directory = opendir(name);
     if(directory != NULL){
@@ -49,6 +49,7 @@ void dir(char *name){
     else{
         perror("Couldn't open the directory");
     }
+    free(ep);
 }
 
 //environ - List all the environment strings
