@@ -86,28 +86,28 @@ int main(int argc, char *argv[], char *env[]) {
 	
     // Perform an infinite loop getting command input from users
     while (fgets(buffer, BUFFER_LEN, in_stream) != NULL) {
-        //inputLen = strlen(buffer); // get length of line typed in shell
         strcpy(arg, ""); // reset arg
         strcpy(command, ""); // reset command
-        // Perform string tokenization to get the command and argument
+        // Perform string tokenization to get 
+		// the command and argument
         strcpy(delim, " ");
         token = strtok(buffer, delim); // get first word
-
+		// remove newline character if at end of string
         if (token[strlen(token)-1] == '\n')
-            token[strlen(token)-1] = '\0'; // remove newline character if at end of string
+            token[strlen(token)-1] = '\0'; 
         strcpy(command, token); // copy token to command
 
         // loop to get second word in buffer
         while(token != NULL) {
             strcpy(delim, "\n");
             token = strtok(NULL, delim);
-//puts(token);
+
             if (token == NULL)
                 break;
             strcpy(arg, token); // store second word in arg 
         }
 
-        // Check the command and execute the operations for each command
+        // Check command and execute operations for each command
         // cd command -- change the current directory
         if (strcmp(command, "cd") == 0) {
             if (strcmp(arg, " ") == 0 || strcmp(arg, "") == 0)
@@ -122,9 +122,7 @@ int main(int argc, char *argv[], char *env[]) {
         } else if (strcmp(command, "echo") == 0) {
             echo(arg);
         } else if (strcmp(command, "help") == 0) {
-            if (strcmp(arg, " ") == 0 || strcmp(arg, "") == 0)
-                printf("Error: help: argument must be of format: help [-dlfpcsu] \n");
-            help(arg, get_executable(SHELL));
+			help();
         } else if (strcmp(command, "pause") == 0) {
             pauses();
         } else if (strcmp(command, "") == 0) {
