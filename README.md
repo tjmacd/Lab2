@@ -13,10 +13,10 @@ Put your name next to something on the todo list so we know you're working on it
 - help - print 'readme' using **more** filter
 - batch file input (a la *myshell batchfile*)
 - I/O redirection? (apparently(?))
+- beef up operators manual (*readme*)
 
 ## TODO
 - environ - should list environment variables specific to our shell (i think) - SHELL is not added to variables
-- beef up operators manual (*readme*)
 - make makefile create **myshell** instead of **myshell.exe**
 - code cleanup
 - executing programs in the shell (Not required)
