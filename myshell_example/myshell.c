@@ -18,14 +18,6 @@
 #define BUFFER_LEN 256
 #define NUM_ENV 2
 
-// Put global environment variables here
-typedef struct{
-	char name[8];
-	char value[256];
-} env_var;
-
-env_var env_vars[2];
-
 // Define functions declared in myshell.h here
 // Returns the current working directory path
 char *get_cwd(){
@@ -43,15 +35,6 @@ char *get_executable(char* SHELL){
 	}
 }
 
-void set_var(char name[], char value[]){
-	for(int i = 0; i < NUM_ENV; i++){
-		if(strcmp(&name, &env_vars[i].name) == 0){
-			 strcpy(env_vars[i].value, value);
-		}	
-	}	
-}
-	
-
 int main(int argc, char *argv[], char *env[]) {
     // Input buffer and and commands
     char buffer[BUFFER_LEN] = { 0 };
@@ -64,10 +47,6 @@ int main(int argc, char *argv[], char *env[]) {
 	setenv("SHELL", get_executable(SHELL), 1);
 	free(SHELL);
 
-	strcpy(env_vars[0].name, "PWD");
-	strcpy(env_vars[0].value, get_cwd());
-	strcpy(env_vars[1].name, "SHELL");
-	strcpy(env_vars[1].value, get_executable(SHELL));
 
     // Parse the commands provided using argc and argv
 	FILE *in_stream;
