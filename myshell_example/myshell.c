@@ -49,7 +49,7 @@ int main(int argc, char *argv[], char *env[]) {
 
 
     // Parse the commands provided using argc and argv
-	FILE *in_stream;
+	FILE *in_stream = NULL;
 	if(argc > 1){
 		in_stream = fopen(argv[1], "r");
 		if(in_stream == NULL){
@@ -110,6 +110,7 @@ int main(int argc, char *argv[], char *env[]) {
         
         // quit command -- exit the shell
         else if (strcmp(command, "quit") == 0) {
+			free(token), fclose(in_stream);
             return EXIT_SUCCESS;
         }
 
@@ -121,6 +122,6 @@ int main(int argc, char *argv[], char *env[]) {
 			printf("%s> ", get_cwd());
 
     }
-    free(token); // free the token pointer
+    free(token), fclose(in_stream); // free the token pointer
     return EXIT_SUCCESS;
 }

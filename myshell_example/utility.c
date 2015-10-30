@@ -17,7 +17,7 @@
 // in your myshell.c source file
 
 //cd <directory> - Change the current default directory to <directory>
-void cd(const char *name) {
+void cd(char *name) {
     if (chdir(name) == -1) {
         puts("Error: directory not found");
     } else {
@@ -53,7 +53,7 @@ void dir(char *name){
 }
 
 //environ - List all the environment strings
-void environ(const char* env[]){
+void environ(char* env[]){
 	int i;
 	for( i = 0; env[i] != NULL; i++) {
 		printf("%s\n",env[i]);
@@ -62,7 +62,7 @@ void environ(const char* env[]){
 
 //echo <comment> - Display <comment> on the display followed by a
 //new line (multiple spaces/tabs may be reduced to a single space)
-void echo(const char *text){
+void echo(char *text){
     puts(text);
 }
 

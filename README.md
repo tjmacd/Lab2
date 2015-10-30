@@ -1,5 +1,5 @@
 # Lab2
-Put your name next to something on the todo list so we know you're working on it. Then do it. When you're done, move it to the done list.
+I think everything is finished
 
 ## DONE
 - clr
@@ -18,6 +18,6 @@ Put your name next to something on the todo list so we know you're working on it
 
 ## TODO
 
-- make makefile create **myshell** instead of **myshell.exe**
+- make makefile create **myshell** instead of **myshell.exe** - difficult to do with the current makefile - probably not important
 - code cleanup
 - executing programs in the shell (Not required)

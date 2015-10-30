@@ -12,11 +12,11 @@
 // Include your relevant functions declarations here they must start with the 
 // extern keyword such as in the following example:
 // extern void display_help(void);
-extern void cd(const char *name);
+extern void cd(char *name);
 extern void clr();
-extern void environ(const char* env[]);
+extern void environ(char* env[]);
 extern void dir(char *name);
-extern void echo(const char *text);
+extern void echo(char *text);
 extern void help();
 extern void pauses();
 
